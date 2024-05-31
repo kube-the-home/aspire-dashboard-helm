@@ -1,0 +1,25 @@
+ui:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    host: aspire.hankeln.work
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-dns01-issuer
+    tls:
+      - hosts:
+          - aspire.hankeln.work
+        secretName: aspire-tls
+
+otlp:
+  port: 18889
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    host: in-aspire.hankeln.work
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-dns01-issuer
+    tls:
+      - hosts:
+          - in-aspire.hankeln.work
+        secretName: in-aspire-tls
+

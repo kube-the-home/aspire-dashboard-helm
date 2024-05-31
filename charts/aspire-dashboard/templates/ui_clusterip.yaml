@@ -1,0 +1,19 @@
+{{- $name := include "app.name" . -}}
+
+{{- if .Values.ui.ingress.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}-ui-clusterip
+  {{- if .Values.ui.ingress.labels }}
+  labels:
+    {{- toYaml .Values.ui.ingress.labels | nindent 4 }}
+  {{- end }}
+spec:
+  selector:
+    app: {{ $name }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.ui.port }}
+      targetPort: {{ .Values.ui.port }}
+{{- end }}

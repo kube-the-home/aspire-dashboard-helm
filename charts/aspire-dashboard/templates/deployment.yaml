@@ -1,0 +1,52 @@
+{{- $name := include "app.name" . -}}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+  labels:
+    app: {{ $name }}
+    {{- if .Values.labels }}
+    {{- toYaml .Values.labels | nindent 4 }}
+    {{- end }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ $name }}
+      {{- if .Values.labels }}
+      {{- toYaml .Values.labels | nindent 6 }}
+      {{- end }}
+  template:
+    metadata:
+      labels:
+        app: {{ $name }}
+        {{- if .Values.labels }}
+        {{- toYaml .Values.labels | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- if .Values.securityContext.pod }}
+      securityContext:
+        {{- toYaml .Values.securityContext.pod | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ $name }}
+          image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.securityContext.container }}
+          securityContext:
+          {{- toYaml .Values.securityContext.container | nindent 12 }}
+          {{- end }}
+          {{- if .Values.resources }}
+          resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+          {{- end }}
+          env:
+            - name: DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS 
+              value: "true"
+          {{- if .Values.env }}
+          {{- toYaml .Values.env | nindent 12 }}
+          {{- end }}
+          ports:
+            - containerPort: {{ .Values.ui.port }}
+            - containerPort: {{ .Values.otlp.port }}

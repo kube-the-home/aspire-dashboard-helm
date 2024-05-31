@@ -1,0 +1,41 @@
+image:
+  registry: mcr.microsoft.com
+  repository: dotnet/aspire-dashboard
+  tag: 8.0.0
+  pullPolicy: "IfNotPresent"
+
+
+
+ui:
+  port: 18888
+  anonymous: false
+  ingress:
+    enabled: false
+    ingressClassName: "nginx"
+    host: ~
+    tls: []
+    labels: {}
+    annotations: {}
+
+otlp:
+  port: 18889
+  ingress:
+    enabled: false
+    ingressClassName: "nginx"
+    host: ~
+    tls: []
+    labels: {}
+    annotations: {}
+  clusterip:
+    enabled: false
+    port: 8080
+    labels: {}
+
+
+securityContext:
+  pod: {}
+  container: {}
+
+resources: {}
+env: {}
+labels: {}

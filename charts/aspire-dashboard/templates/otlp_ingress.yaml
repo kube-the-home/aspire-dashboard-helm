@@ -1,0 +1,34 @@
+{{- $name := include "app.name" . -}}
+
+{{- if .Values.otlp.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $name }}-otlp-ingress
+  {{- if .Values.otlp.ingress.labels }}
+  labels:
+    {{- toYaml .Values.otlp.ingress.labels | nindent 4 }}
+  {{- end }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.otlp.ingress.ingressClassName }}
+    {{- if .Values.otlp.ingress.annotations }}
+    {{- toYaml .Values.otlp.ingress.annotations | nindent 4 }}
+    {{- end }}
+spec:
+  ingressClassName: {{ .Values.otlp.ingress.ingressClassName }}
+  rules:
+    - host: {{ .Values.otlp.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $name }}-otlp-clusterip
+                port:
+                  number: {{ .Values.otlp.clusterip.port }}
+  {{- if .Values.otlp.ingress.tls }}
+  tls:
+  {{- toYaml .Values.otlp.ingress.tls | nindent 4 }}
+  {{ end }}
+{{- end }}

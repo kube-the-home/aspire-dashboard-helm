@@ -1,0 +1,34 @@
+{{- $name := include "app.name" . -}}
+
+{{- if .Values.ui.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $name }}-ui-ingress
+  {{- if .Values.ui.ingress.labels }}
+  labels:
+    {{- toYaml .Values.ui.ingress.labels | nindent 4 }}
+  {{- end }}
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ui.ingress.ingressClassName }}
+    {{- if .Values.ui.ingress.annotations }}
+    {{- toYaml .Values.ui.ingress.annotations | nindent 4 }}
+    {{- end }}
+spec:
+  ingressClassName: {{ .Values.ui.ingress.ingressClassName }}
+  rules:
+    - host: {{ .Values.ui.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $name }}-ui-clusterip
+                port:
+                  number: {{ .Values.ui.port }}
+  {{- if .Values.ui.ingress.tls }}
+  tls:
+  {{- toYaml .Values.ui.ingress.tls | nindent 4 }}
+  {{ end }}
+{{- end }}
