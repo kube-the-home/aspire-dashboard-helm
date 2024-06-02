@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   aspire-dashboard:
   - apiVersion: v2
+    created: "2024-06-02T14:45:30.507048712Z"
+    description: A Helm chart to deploy the aspire-dashboard to kubernetes
+    digest: 2b6012146417bcb0cedd725f96c188a55376e63413883db051014ed6b20ef440
+    name: aspire-dashboard
+    type: application
+    urls:
+    - https://github.com/kube-the-home/aspire-dashboard-helm/releases/download/aspire-dashboard-0.2.0/aspire-dashboard-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     created: "2024-05-31T13:10:58.574246537Z"
     description: A Helm chart to deploy the aspire-dashboard to kubernetes
     digest: 02dc79a0c99fe3923133ee5647f0a78dd059dcefe5bcdda5f1de299512843b3e
@@ -10,4 +19,4 @@ entries:
     urls:
     - https://github.com/kube-the-home/aspire-dashboard-helm/releases/download/aspire-dashboard-0.1.1/aspire-dashboard-0.1.1.tgz
     version: 0.1.1
-generated: "2024-05-31T13:10:58.574258149Z"
+generated: "2024-06-02T14:45:30.507062588Z"
