@@ -38,9 +38,3 @@ otlp:
 - [All](https://kube-the-home.github.io/kube-the-home/)
 - [Contributing](https://kube-the-home.github.io/kube-the-home/Contribution/)
 - [Helm Chart](https://kube-the-home.github.io/kube-the-home/Helm-Charts/aspire-dashboard/)
-
-## Todo
-
-#### Allow Anonymous
-Currently this Helm Chart will always set `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` to true. If this is the case the dashboard can be accessed publicly. The values.yaml has already been adapted with the flag `ui.anonymous` but currently this does not change anything.
-But as this Dashboard is more for test than production use cases this should not be that critical.

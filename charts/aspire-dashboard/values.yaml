@@ -8,7 +8,6 @@ image:
 
 ui:
   port: 18888
-  anonymous: false
   ingress:
     enabled: false
     ingressClassName: "nginx"
