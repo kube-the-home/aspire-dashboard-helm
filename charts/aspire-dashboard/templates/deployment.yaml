@@ -42,8 +42,6 @@ spec:
           {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
           env:
-            - name: DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS 
-              value: "true"
           {{- if .Values.env }}
           {{- toYaml .Values.env | nindent 12 }}
           {{- end }}
