@@ -4,8 +4,6 @@ image:
   tag: 8.0.0
   pullPolicy: "IfNotPresent"
 
-
-
 ui:
   port: 18888
   ingress:
@@ -30,7 +28,6 @@ otlp:
     port: 8080
     labels: {}
 
-
 securityContext:
   pod: {}
   container: {}
@@ -38,3 +35,53 @@ securityContext:
 resources: {}
 env: {}
 labels: {}
+
+opentelemetry-collector:
+  enabled: false
+
+  image:
+    repository: otel/opentelemetry-collector-k8s #otel/opentelemetry-collector
+  mode: daemonset
+
+  presets:
+    logsCollection:
+      enabled: true
+      includeCollectorLogs: true
+    kubeletMetrics:
+      enabled: true
+    # clusterMetrics:
+    #   enabled: true
+    kubernetesEvents:
+      enabled: true
+    hostMetrics:
+      enabled: true
+
+  # presets:
+  #   kubeletMetrics:
+  #     enabled: true
+
+  config:
+    exporters:
+      otlp:
+        endpoint: "http://{{ .Release.Name }}-otlp-clusterip.{{ .Release.Namespace }}.svc.cluster.local:8080"
+        tls:
+          insecure: true
+    service:
+      pipelines:
+        logs:
+          exporters:
+            - otlp
+        traces:
+          exporters:
+            - otlp
+        metrics:
+          exporters:
+            - otlp
+
+      # telemetry:
+      #   logs:
+      #     level: "debug"
+    receivers:
+      jaeger: {}
+      prometheus: {}
+      zipkin: {}
