@@ -1,11 +1,13 @@
 image:
   registry: mcr.microsoft.com
   repository: dotnet/aspire-dashboard
-  tag: 8.0.0
+  tag: 8.1.0
   pullPolicy: "IfNotPresent"
 
 ui:
   port: 18888
+  auth:
+    authMode: Unsecured
   ingress:
     enabled: false
     ingressClassName: "nginx"
@@ -16,6 +18,12 @@ ui:
 
 otlp:
   port: 18889
+  auth:
+    # Currently one of [ApiKey, Unsecured]
+    authMode: ApiKey
+    apiKey: aspire
+    apiKeySecretName: ~
+    apiKeySecretKey: token
   ingress:
     enabled: false
     ingressClassName: "nginx"
@@ -36,7 +44,10 @@ resources: {}
 env: {}
 labels: {}
 
+# Sub Chart for the OpenTelemetry Collector
 opentelemetry-collector:
+  # Activates the SubChart
+  # WARNING: Integration is still not 100% functional
   enabled: false
 
   image:
@@ -64,6 +75,8 @@ opentelemetry-collector:
     exporters:
       otlp:
         endpoint: "http://{{ .Release.Name }}-otlp-clusterip.{{ .Release.Namespace }}.svc.cluster.local:8080"
+        headers:
+          x-otlp-api-key: aspire
         tls:
           insecure: true
     service:
@@ -98,7 +111,7 @@ opentelemetry-collector:
       resourcedetection/system:
         detectors: [env, system, gcp, eks]
         timeout: 2s
-        override: false  
+        override: false
       attributes/metrics:
         actions:
           - action: insert
@@ -109,7 +122,7 @@ opentelemetry-collector:
             value: ENV_NAME
           - action: insert
             key: cluster
-            value: CLUSTER_NAME     
+            value: CLUSTER_NAME
       attributes/traces:
         actions:
           - action: insert
@@ -120,7 +133,7 @@ opentelemetry-collector:
             value: ENV_NAME
           - action: insert
             key: cluster
-            value: CLUSTER_NAME  
+            value: CLUSTER_NAME
       attributes/logs:
         actions:
           - action: insert
@@ -131,7 +144,7 @@ opentelemetry-collector:
             value: ENV_NAME
           - action: insert
             key: cluster
-            value: CLUSTER_NAME                  
+            value: CLUSTER_NAME
       resource:
         attributes:
           - action: insert

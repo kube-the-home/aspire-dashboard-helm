@@ -42,6 +42,21 @@ spec:
           {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
           env:
+            - name: DASHBOARD__OTLP__AUTHMODE
+              value: {{ .Values.otlp.auth.authMode }}
+            - name: DASHBOARD__FRONTEND__AUTHMODE
+              value: {{ .Values.ui.auth.authMode }}
+            {{ if eq .Values.otlp.auth.authMode "ApiKey" }}
+            - name: DASHBOARD__OTLP__PRIMARYAPIKEY
+              {{ if .Values.otlp.auth.apiKeySecretName }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.otlp.auth.apiKeySecretName }}
+                  key: {{ .Values.otlp.auth.apiKeySecretKey }}
+              {{ else }}
+              value: {{ .Values.otlp.auth.apiKey }}
+              {{ end }}
+            {{ end }}
           {{- if .Values.env }}
           {{- toYaml .Values.env | nindent 12 }}
           {{- end }}
