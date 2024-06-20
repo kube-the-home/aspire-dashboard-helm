@@ -4,8 +4,6 @@ image:
   tag: 8.0.0
   pullPolicy: "IfNotPresent"
 
-
-
 ui:
   port: 18888
   ingress:
@@ -30,7 +28,6 @@ otlp:
     port: 8080
     labels: {}
 
-
 securityContext:
   pod: {}
   container: {}
@@ -38,3 +35,139 @@ securityContext:
 resources: {}
 env: {}
 labels: {}
+
+opentelemetry-collector:
+  enabled: false
+
+  image:
+    repository: otel/opentelemetry-collector-k8s #otel/opentelemetry-collector
+  mode: daemonset
+
+  presets:
+    logsCollection:
+      enabled: true
+      includeCollectorLogs: true
+    kubeletMetrics:
+      enabled: true
+    # clusterMetrics:
+    #   enabled: true
+    kubernetesEvents:
+      enabled: true
+    hostMetrics:
+      enabled: true
+    kubernetesAttributes:
+      enabled: true
+      extractAllPodLabels: true
+      extractAllPodAnnotations: true
+
+  config:
+    exporters:
+      otlp:
+        endpoint: "http://{{ .Release.Name }}-otlp-clusterip.{{ .Release.Namespace }}.svc.cluster.local:8080"
+        tls:
+          insecure: true
+    service:
+      pipelines:
+        logs:
+          exporters:
+            - otlp
+          processors:
+            - memory_limiter
+            - k8sattributes
+            - batch
+        traces:
+          exporters:
+            - otlp
+          processors:
+            - memory_limiter
+            - k8sattributes
+            - batch
+        metrics:
+          exporters:
+            - otlp
+          processors:
+            - memory_limiter
+            - k8sattributes
+            - batch
+
+    receivers:
+      jaeger: {}
+      prometheus: {}
+      zipkin: {}
+    processors:
+      resourcedetection/system:
+        detectors: [env, system, gcp, eks]
+        timeout: 2s
+        override: false  
+      attributes/metrics:
+        actions:
+          - action: insert
+            key: env.name
+            value: ENV_NAME
+          - action: insert
+            key: service.instance.id
+            value: ENV_NAME
+          - action: insert
+            key: cluster
+            value: CLUSTER_NAME     
+      attributes/traces:
+        actions:
+          - action: insert
+            key: env.name
+            value: ENV_NAME
+          - action: insert
+            key: service.instance.id
+            value: ENV_NAME
+          - action: insert
+            key: cluster
+            value: CLUSTER_NAME  
+      attributes/logs:
+        actions:
+          - action: insert
+            key: env.name
+            value: ENV_NAME
+          - action: insert
+            key: service.instance.id
+            value: ENV_NAME
+          - action: insert
+            key: cluster
+            value: CLUSTER_NAME                  
+      resource:
+        attributes:
+          - action: insert
+            key: env.name
+            value: ENV_NAME
+          - action: insert
+            key: service.instance.id
+            value: ENV_NAME
+          - action: insert
+            key: cluster
+            value: CLUSTER_NAME
+      batch:
+        send_batch_size: 10000
+        timeout: 200ms
+      memory_limiter:
+        check_interval: 3s
+        limit_mib: 1500
+        spike_limit_mib: 500
+      k8sattributes:
+        auth_type: "serviceAccount"
+        passthrough: true
+        filter:
+          node_from_env_var: K8S_NODE_NAME
+        extract:
+          metadata:
+            - k8s.pod.name
+            - k8s.pod.uid
+            - k8s.deployment.name
+            - k8s.container.name
+            - k8s.namespace.name
+            - k8s.node.name
+            - k8s.pod.start_time
+  extraEnvs:
+    - name: K8S_CLUSTER_NAME
+      value: CLUSTER_NAME
+    - name: K8S_NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
