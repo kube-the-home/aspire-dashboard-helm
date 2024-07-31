@@ -87,6 +87,7 @@ opentelemetry-collector:
           processors:
             - memory_limiter
             - k8sattributes
+            - resource/all
             - batch
         traces:
           exporters:
@@ -94,6 +95,7 @@ opentelemetry-collector:
           processors:
             - memory_limiter
             - k8sattributes
+            - resource/all
             - batch
         metrics:
           exporters:
@@ -101,6 +103,7 @@ opentelemetry-collector:
           processors:
             - memory_limiter
             - k8sattributes
+            - resource/all
             - batch
 
     receivers:
@@ -112,50 +115,11 @@ opentelemetry-collector:
         detectors: [env, system, gcp, eks]
         timeout: 2s
         override: false
-      attributes/metrics:
-        actions:
-          - action: insert
-            key: env.name
-            value: ENV_NAME
-          - action: insert
-            key: service.instance.id
-            value: ENV_NAME
-          - action: insert
-            key: cluster
-            value: CLUSTER_NAME
-      attributes/traces:
-        actions:
-          - action: insert
-            key: env.name
-            value: ENV_NAME
-          - action: insert
-            key: service.instance.id
-            value: ENV_NAME
-          - action: insert
-            key: cluster
-            value: CLUSTER_NAME
-      attributes/logs:
-        actions:
-          - action: insert
-            key: env.name
-            value: ENV_NAME
-          - action: insert
-            key: service.instance.id
-            value: ENV_NAME
-          - action: insert
-            key: cluster
-            value: CLUSTER_NAME
-      resource:
+      resource/all:
         attributes:
           - action: insert
-            key: env.name
-            value: ENV_NAME
-          - action: insert
-            key: service.instance.id
-            value: ENV_NAME
-          - action: insert
-            key: cluster
-            value: CLUSTER_NAME
+            key: service.name
+            from_attribute: k8s.container.name
       batch:
         send_batch_size: 10000
         timeout: 200ms
