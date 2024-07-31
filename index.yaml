@@ -2,6 +2,20 @@ apiVersion: v1
 entries:
   aspire-dashboard:
   - apiVersion: v2
+    created: "2024-07-31T05:46:43.975019114Z"
+    dependencies:
+    - condition: opentelemetry-collector.enabled
+      name: opentelemetry-collector
+      repository: https://open-telemetry.github.io/opentelemetry-helm-charts
+      version: 0.97.1
+    description: A Helm chart to deploy the aspire-dashboard to kubernetes
+    digest: 92f5bdf508d074686bf13cb715ce0cfb9862cb925d1399e635012db7664517cf
+    name: aspire-dashboard
+    type: application
+    urls:
+    - https://github.com/kube-the-home/aspire-dashboard-helm/releases/download/aspire-dashboard-0.3.0/aspire-dashboard-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     created: "2024-06-02T14:45:30.507048712Z"
     description: A Helm chart to deploy the aspire-dashboard to kubernetes
     digest: 2b6012146417bcb0cedd725f96c188a55376e63413883db051014ed6b20ef440
@@ -19,4 +33,4 @@ entries:
     urls:
     - https://github.com/kube-the-home/aspire-dashboard-helm/releases/download/aspire-dashboard-0.1.1/aspire-dashboard-0.1.1.tgz
     version: 0.1.1
-generated: "2024-06-02T14:45:30.507062588Z"
+generated: "2024-07-31T05:46:43.975031296Z"
