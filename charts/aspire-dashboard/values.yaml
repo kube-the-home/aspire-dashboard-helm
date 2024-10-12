@@ -5,35 +5,62 @@ image:
   pullPolicy: "IfNotPresent"
 
 ui:
+  # -- the port the dashboard listens on for its ui
   port: 18888
   auth:
+    # -- the authMode for the ui, currently only Unsecured is supported
     authMode: Unsecured
   ingress:
+    # -- whether to enable the ingress for the dashboard
     enabled: false
+    # -- the ingressclassname for the ingress, default: nginx
     ingressClassName: "nginx"
+    # -- the host the ingress should lsiten for
     host: ~
+    # -- tls configuration to be applied on the ingress
     tls: []
+      # - hosts:
+      #     - aspire.example.com
+      #   secretName: aspire-tls
+    # -- labels to place on the ingress
     labels: {}
+    # -- annotations to place on the ingress
     annotations: {}
 
 otlp:
+  # -- the port the dashboards listens on for otlp
   port: 18889
   auth:
-    # Currently one of [ApiKey, Unsecured]
+    # -- auth mode to use for otlp, currently one of [ApiKey, Unsecured]
     authMode: ApiKey
+    # -- the api key used if no secret is set and authmode is ApiKey
     apiKey: aspire
+    # -- the secret to use as the ApiKey
     apiKeySecretName: ~
+    # -- the key within the secret to use as the ApiKey
     apiKeySecretKey: token
   ingress:
+    # -- whether to enable the ingress for the otlp service
     enabled: false
+    # -- the ingressclassname for the ingress, default: nginx
     ingressClassName: "nginx"
+    # -- the host the ingress should lsiten for
     host: ~
+    # -- tls configuration to be applied on the ingress
     tls: []
+      # - hosts:
+      #     - in.aspire.example.com
+      #   secretName: aspire-in-tls
+    # -- labels to place on the ingress
     labels: {}
+    # -- annotations to place on the ingress
     annotations: {}
   clusterip:
+    # -- whether to enable a clusterip for the otlp service
     enabled: false
+    # -- the port the service should use
     port: 8080
+    # -- labels to place on the clusterip
     labels: {}
 
 securityContext:
@@ -41,17 +68,23 @@ securityContext:
   container: {}
 
 resources: {}
+  # requests:
+  #   cpu: 350m
+  #   memory: 0.512Gi
+  # limits:
+  #   cpu: 1500m
+  #   memory: 1.5Gi
+
 env: {}
 labels: {}
 
 # Sub Chart for the OpenTelemetry Collector
 opentelemetry-collector:
-  # Activates the SubChart
-  # WARNING: Integration is still not 100% functional
+  # -- activate the opentelemetry collector
   enabled: false
 
   image:
-    repository: otel/opentelemetry-collector-k8s #otel/opentelemetry-collector
+    repository: otel/opentelemetry-collector-k8s
   mode: daemonset
 
   presets:
