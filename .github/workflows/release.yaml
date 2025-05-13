@@ -7,8 +7,6 @@ on:
 
 jobs:
   release:
-    # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
-    # see: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -22,7 +20,24 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: Run semantic release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          extra_plugins: |
+            @semantic-release/git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get new version
+        id: get_version
+        run: |
+          VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
+          echo "VERSION=${VERSION#v}" >> $GITHUB_ENV
+
+      - name: Update Chart.yaml
+        run: |
+          sed -i "s/^version:.*/version: $VERSION/" charts/aspire-dashboard/Chart.yaml
+          git add charts/aspire-dashboard/Chart.yaml
       - name: Install Helm Docs
         uses: gabe565/setup-helm-docs-action@v1
 
@@ -32,11 +47,16 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v4
 
-      - name: Install Dependency Repositories
-        run: |
-          helm repo add opentelemetry-collector https://open-telemetry.github.io/opentelemetry-helm-charts
-        
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.7.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Commit changes
+        run: |
+          if git diff --cached --quiet; then
+              echo "No changes to commit."
+          else
+              git commit -m "chore: update Chart.yaml and documentation for version $VERSION"
+              git push origin main
+          fi
