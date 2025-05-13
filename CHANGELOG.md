@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.0.0...1.0.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* install helm deps ([f485c9d](https://github.com/kube-the-home/aspire-dashboard-helm/commit/f485c9d337373066d022c0c70d0820f41b3e7a73))
+
 # 1.0.0 (2025-05-13)
 
 
