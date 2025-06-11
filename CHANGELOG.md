@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.5.0...1.6.0) (2025-06-11)
+
+
+### Features
+
+* adding probes to deployment ([2078c92](https://github.com/kube-the-home/aspire-dashboard-helm/commit/2078c923ca00381fe7539b613e7f7e89270d8c46))
+
 # [1.5.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.4.0...1.5.0) (2025-06-11)
 
 
