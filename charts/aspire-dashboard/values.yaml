@@ -4,6 +4,20 @@ image:
   tag: 9.3.0 # renovate docker mcr.microsoft.com/dotnet/aspire-dashboard
   pullPolicy: "IfNotPresent"
 
+probes:
+  liveness: 
+    # -- whether to enable liveness probe
+    enabled: true
+    path: /health
+  readiness:
+    # -- whether to enable readiness probe
+    enabled: true
+    path: /health
+  startup: 
+    # -- whether to enable startup probe
+    enabled: true
+    path: /health
+
 ui:
   # -- the port the dashboard listens on for its ui
   port: 18888
