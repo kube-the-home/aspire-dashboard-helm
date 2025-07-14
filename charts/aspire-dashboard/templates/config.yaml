@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "app.name" . }}-config
+  labels:
+    app: {{ include "app.name" . }}
+    {{- if .Values.labels }}
+    {{- toYaml .Values.labels | nindent 4 }}
+    {{- end }}
+data: 
+  {{- if .Values.config.limits.maxTraceCount }}
+  DASHBOARD__TELEMETRYLIMITS__MAXTRACECOUNT: {{ .Values.config.limits.maxTraceCount | quote }}
+  {{- end }}
+  {{- if .Values.config.limits.maxLogCount }}
+  DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT: {{ .Values.config.limits.maxLogCount | quote }}
+  {{- end }}
+  {{- if .Values.config.limits.maxMetricCount }}
+  DASHBOARD__TELEMETRYLIMITS__MAXLOGSCOUNT: {{ .Values.config.limits.maxMetricCount | quote }}
+  {{- end }}
+  {{- if .Values.config.limits.maxAttributeCount }}
+  DASHBOARD__TELEMETRYLIMITS__MAXATTRIBUTECOUNT: {{ .Values.config.limits.maxTraceCount | quote }}
+  {{- end }}
+  {{- if .Values.config.limits.maxAttributeLength }}
+  DASHBOARD__TELEMETRYLIMITS__MAXATTRIBUTELENGTH: {{ .Values.config.limits.maxLogCount | quote }}
+  {{- end }}
+  {{- if .Values.config.limits.maxSpanEventCount }}
+  DASHBOARD__TELEMETRYLIMITS__MAXSPANEVENTCOUNT: {{ .Values.config.limits.maxMetricCount | quote }}
+  {{- end }}
+  ASPIRE_DASHBOARD_TELEMETRY_OPTOUT: {{ .Values.config.telemetryOptOut | quote }}
