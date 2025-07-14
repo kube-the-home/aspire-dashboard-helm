@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.7.2...1.8.0) (2025-07-14)
+
+
+### Features
+
+* adding explicit configuration fro limits ([8fb8a98](https://github.com/kube-the-home/aspire-dashboard-helm/commit/8fb8a985444407f99411590c03cbd68516285f28))
+
 ## [1.7.2](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.7.1...1.7.2) (2025-07-13)
 
 
