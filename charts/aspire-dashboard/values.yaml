@@ -92,6 +92,24 @@ resources: {}
 env: {}
 labels: {}
 
+config:
+  # -- whether to opt out of telemetry
+  telemetryOptOut: false
+  # -- the limits for the telemetry data
+  limits:
+    # -- the maximum number of traces to keep in memory
+    maxTraceCount: ~
+    # -- the maximum number of logs to keep in memory
+    maxLogCount: ~
+    # -- the maximum number of metrics to keep in memory
+    maxMetricCount: ~
+    # -- the maximum number of attributes to keep in memory
+    maxAttributeCount: ~
+    # -- the maximum length of an attribute value
+    maxAttributeLength: ~
+    # -- the maximum number of span events to keep in memory
+    maxSpanEventCount: ~
+
 # Sub Chart for the OpenTelemetry Collector
 opentelemetry-collector:
   # -- activate the opentelemetry collector
