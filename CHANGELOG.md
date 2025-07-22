@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.9.0...1.9.1) (2025-07-22)
+
+
+### Bug Fixes
+
+* use the newtoken to push the release ([90f5a29](https://github.com/kube-the-home/aspire-dashboard-helm/commit/90f5a2944d8fd74d8a590dc9c54799bc75c0f00a))
+
 # [1.9.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.8.1...1.9.0) (2025-07-18)
 
 
