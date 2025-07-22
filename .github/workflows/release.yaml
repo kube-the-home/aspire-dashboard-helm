@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.ACCESS_GITHUB_TOKEN }}
 
       - name: Configure Git
         run: |
@@ -26,7 +27,7 @@ jobs:
           extra_plugins: |
             @semantic-release/git
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCESS_GITHUB_TOKEN }}
 
       - name: Get new version
         id: get_version
@@ -54,13 +55,13 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.7.0
         env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_TOKEN: "${{ secrets.ACCESS_GITHUB_TOKEN }}"
 
       - name: Commit changes
         run: |
           if git diff --cached --quiet; then
               echo "No changes to commit."
           else
-              git commit -m "chore: update Chart.yaml and documentation for version $VERSION"
+              git commit -m "chore: update Chart.yaml and documentation for version $VERSION [skip ci]"
               git push origin main
           fi
