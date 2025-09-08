@@ -19,6 +19,6 @@ version: 1.12.0
 
 dependencies:
   - name: opentelemetry-collector
-    version: 0.132.0 # renovate helm opentelemetry-collector
+    version: 0.133.0 # renovate helm opentelemetry-collector
     repository: https://open-telemetry.github.io/opentelemetry-helm-charts
     condition: opentelemetry-collector.enabled
