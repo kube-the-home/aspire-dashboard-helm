@@ -13,7 +13,8 @@ spec:
   selector:
     app: {{ $name }}
   ports:
-    - protocol: TCP
+    - name: otlp
+      protocol: TCP
       port: {{ .Values.otlp.clusterip.port }}
-      targetPort: {{ .Values.otlp.port }}
+      targetPort: otlp
 {{- end }}
