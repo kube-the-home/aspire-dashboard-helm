@@ -26,7 +26,7 @@ spec:
               service:
                 name: {{ $name }}-otlp-clusterip
                 port:
-                  number: {{ .Values.otlp.clusterip.port }}
+                  name: otlp
   {{- if .Values.otlp.ingress.tls }}
   tls:
   {{- toYaml .Values.otlp.ingress.tls | nindent 4 }}

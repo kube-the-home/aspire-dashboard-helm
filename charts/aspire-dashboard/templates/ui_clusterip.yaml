@@ -13,7 +13,8 @@ spec:
   selector:
     app: {{ $name }}
   ports:
-    - protocol: TCP
+    - name: ui
+      protocol: TCP
       port: {{ .Values.ui.port }}
-      targetPort: {{ .Values.ui.port }}
+      targetPort: ui
 {{- end }}

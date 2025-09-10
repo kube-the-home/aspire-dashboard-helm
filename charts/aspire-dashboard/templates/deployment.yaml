@@ -65,7 +65,9 @@ spec:
                 name: {{ include "app.name" . }}-config
           ports:
             - containerPort: {{ .Values.ui.port }}
+              name: ui
             - containerPort: {{ .Values.otlp.port }}
+              name: otlp
           {{- if .Values.probes.liveness.enabled }}
           livenessProbe:
             httpGet:
