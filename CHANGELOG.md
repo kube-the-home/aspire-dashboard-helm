@@ -1,3 +1,15 @@
+# [1.14.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.13.0...1.14.0) (2025-09-12)
+
+
+### Bug Fixes
+
+* skip existing releases ([5a4b431](https://github.com/kube-the-home/aspire-dashboard-helm/commit/5a4b431263901ac9a2b96234fbf1280de22451c5))
+
+
+### Features
+
+* adding codeowners file ([5a992a2](https://github.com/kube-the-home/aspire-dashboard-helm/commit/5a992a2336f7ccfd57faf6f08faa55c1617bb777))
+
 # [1.13.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.12.0...1.13.0) (2025-09-10)
 
 
