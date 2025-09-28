@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.15.1...1.16.0) (2025-09-28)
+
+
+### Features
+
+* **deps:** update helm release opentelemetry-collector to v0.136.1 ([49b1fea](https://github.com/kube-the-home/aspire-dashboard-helm/commit/49b1fead748a3cf116e45b02ac1273d0d8d2f9bf))
+
 ## [1.15.1](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.15.0...1.15.1) (2025-09-23)
 
 
