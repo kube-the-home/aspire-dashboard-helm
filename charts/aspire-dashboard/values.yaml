@@ -1,7 +1,7 @@
 image:
   registry: mcr.microsoft.com
   repository: dotnet/aspire-dashboard
-  tag: 9.4.0 # renovate docker mcr.microsoft.com/dotnet/aspire-dashboard
+  tag: 9.5.0 # renovate docker mcr.microsoft.com/dotnet/aspire-dashboard
   pullPolicy: "IfNotPresent"
 
 probes:
