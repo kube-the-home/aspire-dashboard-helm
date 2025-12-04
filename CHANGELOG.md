@@ -1,3 +1,9 @@
+## [1.19.1](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.19.0...1.19.1) (2025-12-04)
+
+### Bug Fixes
+
+* add preset conventionalcommits for semantic release ([2e6612d](https://github.com/kube-the-home/aspire-dashboard-helm/commit/2e6612dc92e9a79ff974775003c3526a2a283047))
+
 # [1.19.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.18.2...1.19.0) (2025-11-21)
 
 
