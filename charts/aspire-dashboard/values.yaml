@@ -4,6 +4,7 @@ image:
   tag: 13.1.0 # renovate docker mcr.microsoft.com/dotnet/aspire-dashboard
   pullPolicy: "IfNotPresent"
 
+revisionHistoryLimit: 1
 probes:
   liveness: 
     # -- whether to enable liveness probe
@@ -128,6 +129,8 @@ opentelemetry-collector:
   # -- activate the opentelemetry collector
   enabled: false
 
+  revisionHistoryLimit: 1
+  
   image:
     repository: otel/opentelemetry-collector-k8s
   mode: daemonset
