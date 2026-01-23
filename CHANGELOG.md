@@ -1,3 +1,9 @@
+## [1.23.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.22.0...1.23.0) (2026-01-23)
+
+### Features
+
+* adding gateway api support ([6a56195](https://github.com/kube-the-home/aspire-dashboard-helm/commit/6a56195a8df0b03be2212ee16abb5f462e37e469))
+
 ## [1.22.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.21.0...1.22.0) (2026-01-07)
 
 ### Features
