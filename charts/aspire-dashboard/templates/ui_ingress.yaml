@@ -4,7 +4,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $name }}-ui-ingress
+  name: {{ $name }}-ui
   {{- if .Values.ui.ingress.labels }}
   labels:
     {{- toYaml .Values.ui.ingress.labels | nindent 4 }}
