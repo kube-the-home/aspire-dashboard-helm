@@ -1,10 +1,10 @@
 {{- $name := include "app.name" . -}}
 
-{{- if .Values.ui.ingress.enabled }}
+{{- if or .Values.ui.ingress.enabled .Values.ui.route.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $name }}-ui-clusterip
+  name: {{ $name }}-ui
   {{- if .Values.ui.ingress.labels }}
   labels:
     {{- toYaml .Values.ui.ingress.labels | nindent 4 }}

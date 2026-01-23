@@ -40,6 +40,12 @@ ui:
     labels: {}
     # -- annotations to place on the ingress
     annotations: {}
+  route:
+    enabled: false
+    annotations: {}
+    labels: {}
+    hostnames: []
+    parentRefs: []
 
 otlp:
   # -- the port the dashboards listens on for otlp
@@ -69,6 +75,13 @@ otlp:
     labels: {}
     # -- annotations to place on the ingress
     annotations: {}
+  route:
+    enabled: false
+    annotations: {}
+    labels: {}
+    hostnames: []
+    parentRefs: []
+    
   clusterip:
     # -- whether to enable a clusterip for the otlp service
     enabled: false

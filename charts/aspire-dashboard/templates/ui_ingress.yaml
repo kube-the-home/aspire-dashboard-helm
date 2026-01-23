@@ -24,7 +24,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ $name }}-ui-clusterip
+                name: {{ $name }}-ui
                 port:
                   name: ui
   {{- if .Values.ui.ingress.tls }}
