@@ -1,3 +1,9 @@
+## [1.23.1](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.23.0...1.23.1) (2026-01-23)
+
+### Bug Fixes
+
+* setting revisionHistory Limit with default of one ([9632a32](https://github.com/kube-the-home/aspire-dashboard-helm/commit/9632a3294d5de1124d0b091ce03d092cf1e637d8))
+
 ## [1.23.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.22.0...1.23.0) (2026-01-23)
 
 ### Features
