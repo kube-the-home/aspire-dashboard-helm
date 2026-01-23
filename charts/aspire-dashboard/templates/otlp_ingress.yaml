@@ -24,7 +24,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ $name }}-otlp-clusterip
+                name: {{ $name }}-otlp
                 port:
                   name: otlp
   {{- if .Values.otlp.ingress.tls }}
