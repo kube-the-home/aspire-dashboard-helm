@@ -155,7 +155,7 @@ opentelemetry-collector:
   config:
     exporters:
       otlp:
-        endpoint: "http://{{ .Release.Name }}-otlp-clusterip.{{ .Release.Namespace }}.svc.cluster.local:8080"
+        endpoint: "http://{{ .Release.Name }}-otlp.{{ .Release.Namespace }}.svc.cluster.local:8080"
         headers:
           x-otlp-api-key: aspire
         tls:
