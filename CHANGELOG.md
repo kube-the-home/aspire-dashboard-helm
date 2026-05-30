@@ -1,3 +1,9 @@
+## [1.27.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.26.0...1.27.0) (2026-05-30)
+
+### Features
+
+* **deps:** update mcr.microsoft.com/dotnet/aspire-dashboard docker tag to v13.3.0 ([009968f](https://github.com/kube-the-home/aspire-dashboard-helm/commit/009968fe449cd6b0a4b5f28fda2ce808f71e4a37))
+
 ## [1.26.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.25.0...1.26.0) (2026-03-27)
 
 ### Features
