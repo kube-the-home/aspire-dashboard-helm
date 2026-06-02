@@ -47,7 +47,7 @@ jobs:
         run: helm-docs
         
       - name: Install Helm
-        uses: azure/setup-helm@v4
+        uses: azure/setup-helm@v5
 
       - name: Install Dependency Repositories
         run: |
