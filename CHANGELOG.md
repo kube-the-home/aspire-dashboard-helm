@@ -1,3 +1,9 @@
+## [1.28.2](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.28.1...1.28.2) (2026-06-05)
+
+### Bug Fixes
+
+* switch to using reusable workflow actions ([e5fafae](https://github.com/kube-the-home/aspire-dashboard-helm/commit/e5fafae5a68ba34aad71eaf18a883c8c3fab6ca7))
+
 ## [1.28.1](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.28.0...1.28.1) (2026-06-05)
 
 ### Bug Fixes
