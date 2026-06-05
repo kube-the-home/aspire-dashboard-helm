@@ -1,0 +1,15 @@
+name: Helm
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    uses: kube-the-home/github-actions/.github/workflows/helm-lint.yaml@1b0db0ca7b749acb29927b132258edafc7bac7b0 # v1.0.0
+    with:
+      chart_path: charts/aspire-dashboard
