@@ -1,3 +1,9 @@
+## [1.28.3](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.28.2...1.28.3) (2026-06-05)
+
+### Bug Fixes
+
+* **deps:** update kube-the-home/github-actions action to v1.0.1 ([7906734](https://github.com/kube-the-home/aspire-dashboard-helm/commit/7906734174757649d86cb67aad5eac29c9f798da))
+
 ## [1.28.2](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.28.1...1.28.2) (2026-06-05)
 
 ### Bug Fixes
