@@ -7,63 +7,20 @@ on:
 
 jobs:
   release:
-    permissions:
-      contents: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.ACCESS_GITHUB_TOKEN }}
+    uses: kube-the-home/github-actions/.github/workflows/semantic-release.yaml@1b0db0ca7b749acb29927b132258edafc7bac7b0 # v1.0.0
+    secrets:
+      APP_ID: ${{ secrets.RELEASE_APP_ID }}
+      APP_PRIVATE_KEY: ${{ secrets.RELEASE_APP_PEM }}
 
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-      - name: Run semantic release
-        uses: cycjimmy/semantic-release-action@v6
-        with:
-          extra_plugins: |
-            @semantic-release/git
-            conventional-changelog-conventionalcommits
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_GITHUB_TOKEN }}
-
-      - name: Get new version
-        id: get_version
-        run: |
-          VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
-          echo "VERSION=${VERSION#v}" >> $GITHUB_ENV
-
-      - name: Update Chart.yaml
-        run: |
-          sed -i "s/^version:.*/version: $VERSION/" charts/aspire-dashboard/Chart.yaml
-          git add charts/aspire-dashboard/Chart.yaml
-      - name: Install Helm Docs
-        uses: gabe565/setup-helm-docs-action@d5c35bdc9133cfbea3b671acadf50a29029e87c2 # v1
-
-      - name: Run Helm Docs
-        run: helm-docs
-        
-      - name: Install Helm
-        uses: azure/setup-helm@1a275c3b69536ee54be43f2070a358922e12c8d4 # v4
-
-      - name: Install Dependency Repositories
-        run: |
-          helm repo add opentelemetry-collector https://open-telemetry.github.io/opentelemetry-helm-charts
-
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@cae68fefc6b5f367a0275617c9f83181ba54714f # v1.7.0
-        env:
-          CR_TOKEN: "${{ secrets.ACCESS_GITHUB_TOKEN }}"
-          skip_existing: true
-
-      - name: Commit changes
-        run: |
-          if git diff --cached --quiet; then
-              echo "No changes to commit."
-          else
-              git commit -m "chore: update Chart.yaml and documentation for version $VERSION [skip ci]"
-              git push origin main
-          fi
+  helm:
+    needs: release
+    if: needs.release.outputs.new_version != ''
+    uses: kube-the-home/github-actions/.github/workflows/helm-release.yaml@1b0db0ca7b749acb29927b132258edafc7bac7b0 # v1.0.0
+    with:
+      chart_path: charts/aspire-dashboard
+      version: ${{ needs.release.outputs.new_version }}
+      helm_dependency_repos: |
+        opentelemetry-collector https://open-telemetry.github.io/opentelemetry-helm-charts
+    secrets:
+      APP_ID: ${{ secrets.RELEASE_APP_ID }}
+      APP_PRIVATE_KEY: ${{ secrets.RELEASE_APP_PEM }}
