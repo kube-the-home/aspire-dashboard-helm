@@ -1,9 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>kube-the-home/renovate"
-  ],
-  "reviewers": [
-    "lukashankeln"
+    "github>kube-the-home/renovate",
+    "github>kube-the-home/renovate//presets/reviewer/kube-the-home.json",
+    "github>kube-the-home/renovate//presets/components/github-actions.json"
   ]
 }
