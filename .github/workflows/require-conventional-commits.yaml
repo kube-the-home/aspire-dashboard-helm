@@ -7,4 +7,4 @@ on:
 
 jobs:
   conventions:
-    uses: kube-the-home/github-actions/.github/workflows/git-conventions.yaml@e698429ae3d6096c14d7eb6d2ffef1da8c26cdea # v1.4.1
+    uses: kube-the-home/github-actions/.github/workflows/git-conventions.yaml@962260b6048afd17325015c372eeb835a04b25b2 # v1.4.2
