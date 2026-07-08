@@ -1,3 +1,5 @@
+## [1.31.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.30.0...1.31.0) (2026-07-08)
+
 ## [1.30.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.29.1...1.30.0) (2026-06-24)
 
 ### Features
