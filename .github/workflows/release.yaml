@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    uses: kube-the-home/github-actions/.github/workflows/semantic-release.yaml@70b35bb255a89f5a9281934be8941da086031276 # v1.4.11
+    uses: kube-the-home/github-actions/.github/workflows/semantic-release.yaml@7d8043b1d454e713b465c324c99d929a4a625a98 # v1.4.12
     secrets:
       APP_ID: ${{ secrets.RELEASE_APP_ID }}
       APP_PRIVATE_KEY: ${{ secrets.RELEASE_APP_PEM }}
@@ -15,7 +15,7 @@ jobs:
   helm:
     needs: release
     if: needs.release.outputs.new_version != ''
-    uses: kube-the-home/github-actions/.github/workflows/helm-release.yaml@70b35bb255a89f5a9281934be8941da086031276 # v1.4.11
+    uses: kube-the-home/github-actions/.github/workflows/helm-release.yaml@7d8043b1d454e713b465c324c99d929a4a625a98 # v1.4.12
     with:
       chart_path: charts/aspire-dashboard
       version: ${{ needs.release.outputs.new_version }}
