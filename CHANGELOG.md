@@ -1,3 +1,15 @@
+## 1.32.0 (2026-10-15)
+
+* build(deps): update kube-the-home/github-actions action to v1.4.10 (#108) ([f2067f9](https://github.com/kube-the-home/aspire-dashboard-helm/commit/f2067f9)), closes [#108](https://github.com/kube-the-home/aspire-dashboard-helm/issues/108)
+* build(deps): update kube-the-home/github-actions action to v1.4.11 (#109) ([9b23d02](https://github.com/kube-the-home/aspire-dashboard-helm/commit/9b23d02)), closes [#109](https://github.com/kube-the-home/aspire-dashboard-helm/issues/109)
+* build(deps): update kube-the-home/github-actions action to v1.4.12 (#110) ([51c7291](https://github.com/kube-the-home/aspire-dashboard-helm/commit/51c7291)), closes [#110](https://github.com/kube-the-home/aspire-dashboard-helm/issues/110)
+* build(deps): update kube-the-home/github-actions action to v1.4.15 (#114) ([80909e5](https://github.com/kube-the-home/aspire-dashboard-helm/commit/80909e5)), closes [#114](https://github.com/kube-the-home/aspire-dashboard-helm/issues/114)
+* build(deps): update kube-the-home/github-actions action to v1.4.9 (#107) ([b8cdbee](https://github.com/kube-the-home/aspire-dashboard-helm/commit/b8cdbee)), closes [#107](https://github.com/kube-the-home/aspire-dashboard-helm/issues/107)
+* feat(deps): update helm release opentelemetry-collector to v0.172.1 ([0f77d0c](https://github.com/kube-the-home/aspire-dashboard-helm/commit/0f77d0c))
+* feat(deps): update helm release opentelemetry-collector to v0.175.1 ([d3ce4ca](https://github.com/kube-the-home/aspire-dashboard-helm/commit/d3ce4ca))
+* feat(deps): update mcr.microsoft.com/dotnet/aspire-dashboard docker tag to v13.5.2 ([b5a5c93](https://github.com/kube-the-home/aspire-dashboard-helm/commit/b5a5c93))
+* chore: update Chart.yaml and docs for 1.31.0 [skip ci] ([bea8783](https://github.com/kube-the-home/aspire-dashboard-helm/commit/bea8783))
+
 ## [1.31.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.30.0...1.31.0) (2026-07-08)
 
 ## [1.30.0](https://github.com/kube-the-home/aspire-dashboard-helm/compare/1.29.1...1.30.0) (2026-06-24)
