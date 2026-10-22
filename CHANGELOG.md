@@ -1,3 +1,11 @@
+## 1.33.0 (2026-10-22)
+
+* feat(deps): update mcr.microsoft.com/dotnet/aspire-dashboard docker tag to v13.6.1 ([86d9441](https://github.com/kube-the-home/aspire-dashboard-helm/commit/86d9441))
+* build(deps): update kube-the-home/github-actions action to v1.4.16 (#116) ([89b9aa0](https://github.com/kube-the-home/aspire-dashboard-helm/commit/89b9aa0)), closes [#116](https://github.com/kube-the-home/aspire-dashboard-helm/issues/116)
+* build(deps): update kube-the-home/github-actions action to v1.4.18 (#117) ([0356199](https://github.com/kube-the-home/aspire-dashboard-helm/commit/0356199)), closes [#117](https://github.com/kube-the-home/aspire-dashboard-helm/issues/117)
+* build(deps): update kube-the-home/github-actions action to v1.4.19 (#118) ([f3d8818](https://github.com/kube-the-home/aspire-dashboard-helm/commit/f3d8818)), closes [#118](https://github.com/kube-the-home/aspire-dashboard-helm/issues/118)
+* chore: update Chart.yaml and docs for 1.32.0 [skip ci] ([ebd623b](https://github.com/kube-the-home/aspire-dashboard-helm/commit/ebd623b))
+
 ## 1.32.0 (2026-10-15)
 
 * build(deps): update kube-the-home/github-actions action to v1.4.10 (#108) ([f2067f9](https://github.com/kube-the-home/aspire-dashboard-helm/commit/f2067f9)), closes [#108](https://github.com/kube-the-home/aspire-dashboard-helm/issues/108)
