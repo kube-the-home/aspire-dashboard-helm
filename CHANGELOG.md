@@ -1,3 +1,10 @@
+## <small>1.34.1 (2026-11-03)</small>
+
+* fix(deps): update mcr.microsoft.com/dotnet/aspire-dashboard docker tag to v13.6.2 ([f66c359](https://github.com/kube-the-home/aspire-dashboard-helm/commit/f66c359))
+* build(deps): update kube-the-home/github-actions action to v1.5.6 (#124) ([27fc601](https://github.com/kube-the-home/aspire-dashboard-helm/commit/27fc601)), closes [#124](https://github.com/kube-the-home/aspire-dashboard-helm/issues/124)
+* build(deps): update kube-the-home/github-actions action to v1.6.0 (#125) ([1cfc3f5](https://github.com/kube-the-home/aspire-dashboard-helm/commit/1cfc3f5)), closes [#125](https://github.com/kube-the-home/aspire-dashboard-helm/issues/125)
+* chore: update Chart.yaml and docs for 1.34.0 [skip ci] ([cc2d848](https://github.com/kube-the-home/aspire-dashboard-helm/commit/cc2d848))
+
 ## 1.34.0 (2026-10-25)
 
 * feat(deps): update helm release opentelemetry-collector to v0.177.0 ([76116a7](https://github.com/kube-the-home/aspire-dashboard-helm/commit/76116a7))
