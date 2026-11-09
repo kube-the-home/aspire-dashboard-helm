@@ -10,6 +10,6 @@ on:
 
 jobs:
   lint:
-    uses: kube-the-home/github-actions/.github/workflows/helm-lint.yaml@bd92cb297e0c1360a10871fb7d41adc5af496560 # v1.6.3
+    uses: kube-the-home/github-actions/.github/workflows/helm-lint.yaml@fb4bda6df1d75948828825e433e24d9a63308816 # v1.6.4
     with:
       chart_path: charts/aspire-dashboard
